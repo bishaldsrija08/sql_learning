@@ -94,3 +94,47 @@ INSERT INTO Title (WORKER_REF_ID, WORKER_TITLE, AFFECTED_FROM) VALUES
 (8, 'Software Engg',  '2023-05-25 12:45:00');
 
 SELECT * FROM Title;
+
+
+-- Creating another DB
+
+CREATE DATABASE temp;
+
+CREATE TABLE Customer(
+id INT PRIMARY KEY,
+cname VARCHAR(255),
+address VARCHAR(255),
+gender CHAR(2),
+city VARCHAR(255),
+pincode INT
+);
+
+INSERT INTO Customer (id, cname, address, gender, city, pincode) VALUES
+(1, 'Amit Sharma', '123 MG Road', 'M', 'Delhi', 110001),
+(2, 'Priya Verma', '56 Park Street', 'F', 'Kolkata', 700016),
+(3, 'Ravi Patel', '89 Nehru Nagar', 'M', 'Ahmedabad', 380001),
+(4, 'Sneha Iyer', '22 Churchgate', 'F', 'Mumbai', 400020),
+(5, 'Karan Singh', '77 Civil Lines', 'M', 'Lucknow', 226001),
+(6, 'Neha Gupta', '12 Residency Area', 'F', 'Indore', 452001),
+(7, 'Vikram Das', '44 MG Marg', 'M', 'Pune', 411001),
+(8, 'Asha Menon', '90 Marine Drive', 'F', 'Chennai', 600004);
+
+
+CREATE TABLE Order_details(
+    order_id INT,
+    delivery_date DATE,
+    cust_id INT,
+    FOREIGN KEY(cust_id) REFERENCES Customer(id) -- Foreign key cust id jasle reference garxa customer table ko id
+)
+
+INSERT INTO Order_details (order_id, delivery_date, cust_id) VALUES
+(101, '2025-07-01', 1),
+(102, '2025-07-05', 2),
+(103, '2025-07-10', 3),
+(104, '2025-07-15', 4),
+(105, '2025-07-20', 5),
+(106, '2025-07-22', 6),
+(107, '2025-07-25', 7),
+(108, '2025-07-28', 8),
+(109, '2025-08-01', 2),
+(110, '2025-08-03', 4);
