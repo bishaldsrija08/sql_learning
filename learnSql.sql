@@ -1,6 +1,7 @@
 CREATE DATABASE IF NOT EXISTS ORG;
 SHOW DATABASES;
 USE ORG;
+USE TEMP;
 
 CREATE TABLE Worker(
 WORKER_ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -99,7 +100,7 @@ SELECT * FROM Title;
 -- Creating another DB
 
 CREATE DATABASE temp;
-
+USE temp;
 CREATE TABLE Customer(
 id INT PRIMARY KEY,
 cname VARCHAR(255),
@@ -125,7 +126,38 @@ CREATE TABLE Order_details(
     delivery_date DATE,
     cust_id INT,
     FOREIGN KEY(cust_id) REFERENCES Customer(id) -- Foreign key cust id jasle reference garxa customer table ko id
-)
+);
+
+CREATE TABLE account (
+id INT PRIMARY KEY,
+name VARCHAR(255) UNIQUE,
+balance INT,
+CONSTRAINT acc_balance_chk CHECK(balance>1000)
+);
+
+INSERT INTO account (id, name, balance) VALUES
+(1, 'Alice', 1500),
+(2, 'Bob', 2500),
+(3, 'Charlie', 3200),
+(4, 'David', 500),
+(5, 'Eva', 1800);
+
+CREATE TABLE account (
+id INT PRIMARY KEY,
+name VARCHAR(255) UNIQUE,
+balance INT NOT NULL DEFAULT 0
+);
+
+INSERT INTO account (id, name) VALUES
+(1, 'Alice'),
+(2, 'Bob'),
+(3, 'Charlie'),
+(4, 'David'),
+(5, 'Eva');
+
+SELECT * FROM account;
+
+DROP TABLE account;
 
 INSERT INTO Order_details (order_id, delivery_date, cust_id) VALUES
 (101, '2025-07-01', 1),
