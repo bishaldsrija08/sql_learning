@@ -159,6 +159,24 @@ SELECT * FROM account;
 
 DROP TABLE account;
 
+-- Add new column
+ALTER TABLE account ADD interest FLOAT NOT NULL DEFAULT 0;
+
+-- Modefy
+ALTER TABLE account MODIFY interest DOUBLE NOT NULL DEFAULT 0;
+
+DESC account;
+
+-- Rename the column
+
+ALTER TABLE account CHANGE COLUMN interest saving_interest FLOAT NOT NULL DEFAULT 0;
+
+-- DROP COLUMN
+ALTER TABLE account DROP COLUMN saving_interest;
+
+-- Rename table name
+ALTER TABLE account RENAME TO account_details;
+
 INSERT INTO Order_details (order_id, delivery_date, cust_id) VALUES
 (101, '2025-07-01', 1),
 (102, '2025-07-05', 2),
